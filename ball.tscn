@@ -1,7 +1,21 @@
-[gd_scene format=3 uid="uid://bx4turqb0wsaf"]
+[gd_scene load_steps=3 format=3 uid="uid://bx4turqb0wsaf"]
+
+[ext_resource type="Texture2D" uid="uid://c12565q3cqnu3" path="res://assets/planetsPack1byGM_Shaber.png" id="1_ci7c5"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5hcwu"]
+radius = 24.0
 
 [node name="Ball" type="RigidBody2D"]
+position = Vector2(9615, 2055)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("1_ci7c5")
+region_enabled = true
+region_rect = Rect2(4969.73, 2019.78, 959.603, 960.506)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.00109863, 0.000305176)
+shape = SubResource("CircleShape2D_5hcwu")
+
+[node name="Camera2D" type="Camera2D" parent="."]
