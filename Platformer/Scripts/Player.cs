@@ -64,20 +64,29 @@ public partial class Player : CharacterBody2D
             velocity.Y += GetGravity().Y * (float)delta;
         }
 
-        // Handle jumping
-        if (Input.IsActionJustPressed("ui_accept") && IsOnFloor())
+        // Jumping
+        if (Input.IsActionJustPressed("ui_up") && IsOnFloor())
         {
             velocity.Y = JumpVelocity;
-            _animatedSprite.Play("jump");
+            _animatedSprite.Play("jump"); //not added
         }
 
-        // Handle horizontal movement
+        // Crouching
+        if (Input.IsActionJustPressed("ui_down") && IsOnFloor())
+        {
+            _animatedSprite.Play("crouch");
+        }
+
+        // Horizontal movement
         Vector2 direction = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down");
         if (direction != Vector2.Zero)
         {
             velocity.X = direction.X * Speed;
-            _animatedSprite.FlipH = direction.X < 0; // Face left or right based on direction
-            _animatedSprite.Play("run"); // Play run animation if moving
+            if (velocity.X != 0)
+            {
+                _animatedSprite.FlipH = direction.X < 0; // Face left or right based on direction
+                _animatedSprite.Play("run"); 
+            }
         }
         else
         {
@@ -89,6 +98,7 @@ public partial class Player : CharacterBody2D
         }
 
         // Animation for falling
+        //TODO: only for dying, now it runs on jump also
         if (!IsOnFloor() && velocity.Y > 0)
         {
             _animatedSprite.Play("fall");

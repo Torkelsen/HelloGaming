@@ -1,7 +1,15 @@
-[gd_scene load_steps=14 format=3 uid="uid://dge88a2nsp6ag"]
+[gd_scene load_steps=17 format=3 uid="uid://dge88a2nsp6ag"]
 
 [ext_resource type="Texture2D" uid="uid://cllhjvjks5j1w" path="res://assets/player/player-spritemap-v9-redpants.png" id="1_4edxm"]
 [ext_resource type="Script" path="res://Platformer/Scripts/Player.cs" id="1_kbf2k"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gqdxx"]
+atlas = ExtResource("1_4edxm")
+region = Rect2(46, 0, 46, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i6tk6"]
+atlas = ExtResource("1_4edxm")
+region = Rect2(0, 100, 46, 50)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cax4v"]
 atlas = ExtResource("1_4edxm")
@@ -39,8 +47,28 @@ region = Rect2(276, 150, 46, 50)
 atlas = ExtResource("1_4edxm")
 region = Rect2(322, 150, 46, 50)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_vaahe"]
+atlas = ExtResource("1_4edxm")
+region = Rect2(46, 100, 46, 50)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_qku5c"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gqdxx")
+}],
+"loop": true,
+"name": &"crouch",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i6tk6")
+}],
+"loop": true,
+"name": &"fall",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_cax4v")
@@ -77,6 +105,14 @@ animations = [{
 "loop": true,
 "name": &"run",
 "speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vaahe")
+}],
+"loop": true,
+"name": &"slide",
+"speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nrdwo"]
@@ -88,7 +124,7 @@ script = ExtResource("1_kbf2k")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -23)
 sprite_frames = SubResource("SpriteFrames_qku5c")
-animation = &"idle"
+animation = &"crouch"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, -22)
